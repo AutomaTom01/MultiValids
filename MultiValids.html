@@ -7,192 +7,110 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         .pip-container {
-            display: none;
-            flex-direction: column;
-            background-color: white;
-            border: 1px solid #ccc;
-            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-            padding: 10px;
-        }
-        .pip-title {
-            font-weight: bold;
-            text-align: left;
-            margin-bottom: 5px;
-        }
-        .pip-label {
-            font-size: 12px;
-            color: #555;
-            margin-bottom: 10px;
+            flex: 1 1 calc(50% - 20px); /* Each PIP takes half the width */
+            box-sizing: border-box;
         }
         iframe {
             width: 100%;
             height: 550px;
             border: none;
         }
-        .form-container {
-            margin-bottom: 20px;
-        }
-        .form-container label {
-            display: block;
+        label, input[type="text"] {
+            display: inline-block;
             margin-bottom: 10px;
         }
-        .form-container input[type="checkbox"] {
+        button {
             margin-right: 10px;
-        }
-        .form-container button {
-            margin-top: 10px;
-            padding: 10px 20px;
-            font-size: 16px;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        .form-container .go-button {
-            background-color: #4CAF50;
-        }
-        .form-container .reset-button {
-            background-color: #f44336;
-        }
-        .form-container input[type="text"] {
-            margin-left: 10px;
-            width: 100px;
-        }
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            grid-gap: 20px;
         }
     </style>
 </head>
 <body>
 
-<div class="form-container">
-    <label>
-        <input type="checkbox" id="pip1" onclick="toggleTextbox(1)">
-        VALID 31
-        <input type="text" id="pip1-text" placeholder="Label" maxlength="12" style="display:none;">
-    </label>
-    <label>
-        <input type="checkbox" id="pip2" onclick="toggleTextbox(2)">
-        VALID 32
-        <input type="text" id="pip2-text" placeholder="Label" maxlength="12" style="display:none;">
-    </label>
-    <label>
-        <input type="checkbox" id="pip3" onclick="toggleTextbox(3)">
-        VALID 33
-        <input type="text" id="pip3-text" placeholder="Label" maxlength="12" style="display:none;">
-    </label>
-    <label>
-        <input type="checkbox" id="pip4" onclick="toggleTextbox(4)">
-        VALID 34
-        <input type="text" id="pip4-text" placeholder="Label" maxlength="12" style="display:none;">
-    </label>
-    <label>
-        <input type="checkbox" id="pip5" onclick="toggleTextbox(5)">
-        VALID 35
-        <input type="text" id="pip5-text" placeholder="Label" maxlength="12" style="display:none;">
-    </label>
-    <label>
-        <input type="checkbox" id="pip6" onclick="toggleTextbox(6)">
-        VALID 36
-        <input type="text" id="pip6-text" placeholder="Label" maxlength="12" style="display:none;">
-    </label>
-    <label>
-        <input type="checkbox" id="pip7" onclick="toggleTextbox(7)">
-        VALID 37
-        <input type="text" id="pip7-text" placeholder="Label" maxlength="12" style="display:none;">
-    </label>
-    <button class="go-button" onclick="showPIPs()">Go</button>
-    <button class="reset-button" onclick="resetForm()">Reset</button>
-</div>
+<h1>Multi-VALID View</h1>
 
-<div id="grid-container" class="grid-container">
-    <div id="pip1-container" class="pip-container">
-        <div class="pip-title">VALID 31</div>
-        <div id="pip1-label" class="pip-label"></div>
-        <iframe src="http://10.202.109.17/" title="VALID 31"></iframe>
+<form id="pipForm">
+    <div>
+        <input type="checkbox" id="pip1" name="pip1">
+        <label for="pip1">VALID 31</label>
+        <input type="text" id="text1" placeholder="Text for VALID 31" maxlength="12">
     </div>
-    <div id="pip2-container" class="pip-container">
-        <div class="pip-title">VALID 32</div>
-        <div id="pip2-label" class="pip-label"></div>
-        <iframe src="http://10.202.109.18/" title="VALID 32"></iframe>
+    <div>
+        <input type="checkbox" id="pip2" name="pip2">
+        <label for="pip2">VALID 32</label>
+        <input type="text" id="text2" placeholder="Text for VALID 32" maxlength="12">
     </div>
-    <div id="pip3-container" class="pip-container">
-        <div class="pip-title">VALID 33</div>
-        <div id="pip3-label" class="pip-label"></div>
-        <iframe src="http://10.202.109.22/" title="VALID 33"></iframe>
+    <div>
+        <input type="checkbox" id="pip3" name="pip3">
+        <label for="pip3">VALID 33</label>
+        <input type="text" id="text3" placeholder="Text for VALID 33" maxlength="12">
     </div>
-    <div id="pip4-container" class="pip-container">
-        <div class="pip-title">VALID 34</div>
-        <div id="pip4-label" class="pip-label"></div>
-        <iframe src="http://10.202.109.23/" title="VALID 34"></iframe>
+    <div>
+        <input type="checkbox" id="pip4" name="pip4">
+        <label for="pip4">VALID 34</label>
+        <input type="text" id="text4" placeholder="Text for VALID 34" maxlength="12">
     </div>
-    <div id="pip5-container" class="pip-container">
-        <div class="pip-title">VALID 35</div>
-        <div id="pip5-label" class="pip-label"></div>
-        <iframe src="http://10.202.109.15/" title="VALID 35"></iframe>
+    <div>
+        <input type="checkbox" id="pip5" name="pip5">
+        <label for="pip5">VALID 35</label>
+        <input type="text" id="text5" placeholder="Text for VALID 35" maxlength="12">
     </div>
-    <div id="pip6-container" class="pip-container">
-        <div class="pip-title">VALID 36</div>
-        <div id="pip6-label" class="pip-label"></div>
-        <iframe src="http://10.202.109.16/" title="VALID 36"></iframe>
+    <div>
+        <input type="checkbox" id="pip6" name="pip6">
+        <label for="pip6">VALID 36</label>
+        <input type="text" id="text6" placeholder="Text for VALID 36" maxlength="12">
     </div>
-    <div id="pip7-container" class="pip-container">
-        <div class="pip-title">VALID 37</div>
-        <div id="pip7-label" class="pip-label"></div>
-        <iframe src="http://10.202.109.21/" title="VALID 37"></iframe>
+    <div>
+        <input type="checkbox" id="pip7" name="pip7">
+        <label for="pip7">VALID 37</label>
+        <input type="text" id="text7" placeholder="Text for VALID 37" maxlength="12">
     </div>
+    
+    <button type="button" onclick="loadPIPs()">Go</button>
+    <button type="reset" style="background-color: red; color: white;">Reset</button>
+</form>
+
+<div class="container" id="pipContainer">
+    <!-- PIPs will load here dynamically -->
 </div>
 
 <script>
-    function toggleTextbox(pipNumber) {
-        const checkbox = document.getElementById('pip' + pipNumber);
-        const textbox = document.getElementById('pip' + pipNumber + '-text');
-        if (checkbox.checked) {
-            textbox.style.display = 'inline-block';
-        } else {
-            textbox.style.display = 'none';
+function loadPIPs() {
+    const pipContainer = document.getElementById('pipContainer');
+    pipContainer.innerHTML = ''; // Clear existing PIPs
+
+    const pips = [
+        { id: 'pip1', name: 'VALID 31', ip: 'http://10.202.109.17/', textId: 'text1' },
+        { id: 'pip2', name: 'VALID 32', ip: 'http://10.202.109.18/', textId: 'text2' },
+        { id: 'pip3', name: 'VALID 33', ip: 'http://10.202.109.22/', textId: 'text3' },
+        { id: 'pip4', name: 'VALID 34', ip: 'http://10.202.109.23/', textId: 'text4' },
+        { id: 'pip5', name: 'VALID 35', ip: 'http://10.202.109.15/', textId: 'text5' },
+        { id: 'pip6', name: 'VALID 36', ip: 'http://10.202.109.16/', textId: 'text6' },
+        { id: 'pip7', name: 'VALID 37', ip: 'http://10.202.109.21/', textId: 'text7' },
+    ];
+
+    pips.forEach(pip => {
+        const isChecked = document.getElementById(pip.id).checked;
+        const textValue = document.getElementById(pip.textId).value;
+
+        if (isChecked) {
+            const div = document.createElement('div');
+            div.className = 'pip-container';
+            div.innerHTML = `
+                <label>${pip.name}</label>
+                <iframe src="${pip.ip}"></iframe>
+                <p>${textValue}</p>
+            `;
+            pipContainer.appendChild(div);
         }
-    }
-
-    function showPIPs() {
-        // Hide all PIP containers
-        document.querySelectorAll('.pip-container').forEach(function(container) {
-            container.style.display = 'none';
-        });
-
-        // Show selected PIP containers
-        for (let i = 1; i <= 7; i++) {
-            if (document.getElementById('pip' + i).checked) {
-                document.getElementById('pip' + i + '-container').style.display = 'flex';
-                const label = document.getElementById('pip' + i + '-text').value;
-                document.getElementById('pip' + i + '-label').textContent = label;
-            }
-        }
-
-        // Re-adjust grid layout based on the number of visible PIPs
-        const visiblePIPs = document.querySelectorAll('.pip-container:visible').length;
-        const gridContainer = document.getElementById('grid-container');
-        gridContainer.style.gridTemplateColumns = visiblePIPs > 1 ? 'repeat(2, 1fr)' : '1fr';
-    }
-
-    function resetForm() {
-        // Uncheck all checkboxes and clear textboxes
-        for (let i = 1; i <= 7; i++) {
-            document.getElementById('pip' + i).checked = false;
-            document.getElementById('pip' + i + '-text').value = '';
-            document.getElementById('pip' + i + '-text').style.display = 'none';
-        }
-
-        // Hide all PIP containers
-        document.querySelectorAll('.pip-container').forEach(function(container) {
-            container.style.display = 'none';
-        });
-    }
+    });
+}
 </script>
 
 </body>
